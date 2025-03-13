@@ -77,4 +77,18 @@ public class UserService {
                 .password(userRequest.getPassword())
                 .build();
     }
+
+    private UserData buildUserData(UserTRecord userTRecord) {
+        return UserData.builder()
+                .id(userTRecord.getId())
+                .email(userTRecord.getEmail())
+                .username(userTRecord.getUsername())
+                .firstName(userTRecord.getFirstName())
+                .lastName(userTRecord.getLastName())
+                .password(userTRecord.getPassword())
+                .isActive(userTRecord.isActive())
+                .createdAt(userTRecord.getCreatedAt())
+                .updatedAt(userTRecord.getUpdatedAt())
+                .build();
+    }
 }
