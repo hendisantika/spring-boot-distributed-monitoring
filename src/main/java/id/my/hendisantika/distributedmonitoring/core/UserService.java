@@ -35,4 +35,10 @@ public class UserService {
     public UserData updateUser(UserRequest userRequest) {
         return null;
     }
+
+    public UserData getUserByEmail(String email) {
+        return userGateway.findUserByEmail(email)
+                .map(this::buildUserData)
+                .orElse(null);
+    }
 }
