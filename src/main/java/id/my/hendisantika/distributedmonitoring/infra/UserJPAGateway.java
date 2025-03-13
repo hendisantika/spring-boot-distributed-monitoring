@@ -33,4 +33,9 @@ public class UserJPAGateway {
     public Optional<UserTRecord> findUserById(UUID id) {
         return userJPARepository.findById(id);
     }
+
+    public Optional<UserTRecord> findUserByEmail(String email) {
+        return userJPARepository.findByEmail(email);
+    }
+
 }
