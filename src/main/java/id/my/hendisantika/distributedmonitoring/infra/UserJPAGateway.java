@@ -1,6 +1,7 @@
 package id.my.hendisantika.distributedmonitoring.infra;
 
 import io.micrometer.observation.annotation.Observed;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,7 +18,12 @@ import org.springframework.stereotype.Component;
 @Gateway
 @Observed
 @Component
+@RequiredArgsConstructor
 public class UserJPAGateway {
 
     private final UserJPARepository userJPARepository;
+
+    public UserTRecord saveOrUpdate(UserTRecord user) {
+        return userJPARepository.save(user);
+    }
 }
