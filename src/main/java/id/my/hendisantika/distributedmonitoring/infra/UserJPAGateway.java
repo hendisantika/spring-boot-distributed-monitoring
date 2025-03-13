@@ -4,6 +4,7 @@ import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,4 +39,7 @@ public class UserJPAGateway {
         return userJPARepository.findByEmail(email);
     }
 
+    public List<UserTRecord> allUsers() {
+        return userJPARepository.findAll();
+    }
 }
