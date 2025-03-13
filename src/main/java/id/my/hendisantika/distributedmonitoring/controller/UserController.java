@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-distributed-monitoring
@@ -44,6 +46,12 @@ public class UserController {
     public ResponseEntity<UserData> getUserByEmail(@PathVariable String email) {
         UserData userData = userService.getUserByEmail(email);
         return ResponseEntity.ok(userData);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserData>> getAllUsers() {
+        List<UserData> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
 
 }
