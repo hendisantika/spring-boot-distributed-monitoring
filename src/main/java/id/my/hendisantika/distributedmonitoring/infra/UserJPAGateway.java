@@ -50,4 +50,8 @@ public class UserJPAGateway {
                     saveOrUpdate(user);
                 });
     }
+
+    public boolean userExists(UUID id) {
+        return userJPARepository.existsById(id);
+    }
 }
