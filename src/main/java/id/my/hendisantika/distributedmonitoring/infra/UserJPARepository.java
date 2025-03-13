@@ -3,6 +3,7 @@ package id.my.hendisantika.distributedmonitoring.infra;
 import io.micrometer.observation.annotation.Observed;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**

@@ -27,6 +27,9 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true # Formats SQL for better readability
         use_sql_comments: true # Adds comments to the SQL output
+  docker:
+    compose:
+      enabled: true
 
 logging:
   pattern:
