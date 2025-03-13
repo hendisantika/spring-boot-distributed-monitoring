@@ -1,9 +1,14 @@
 package id.my.hendisantika.distributedmonitoring.controller;
 
 import id.my.hendisantika.distributedmonitoring.core.UserService;
+import id.my.hendisantika.distributedmonitoring.dto.UserData;
+import id.my.hendisantika.distributedmonitoring.dto.UserRequest;
 import io.micrometer.observation.annotation.Observed;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,4 +31,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+
+    @PostMapping
+    public ResponseEntity<UserData> createUser(@RequestBody UserRequest userRequest) {
+        UserData userData = userService.createUser(userRequest);
+        return ResponseEntity.ok(userData);
+    }
 }
