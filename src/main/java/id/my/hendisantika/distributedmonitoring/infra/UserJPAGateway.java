@@ -4,6 +4,9 @@ import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+import java.util.UUID;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-distributed-monitoring
@@ -25,5 +28,9 @@ public class UserJPAGateway {
 
     public UserTRecord saveOrUpdate(UserTRecord user) {
         return userJPARepository.save(user);
+    }
+
+    public Optional<UserTRecord> findUserById(UUID id) {
+        return userJPARepository.findById(id);
     }
 }
