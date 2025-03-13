@@ -8,6 +8,8 @@ import id.my.hendisantika.distributedmonitoring.infra.UserTRecord;
 import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-distributed-monitoring
@@ -40,5 +42,12 @@ public class UserService {
         return userGateway.findUserByEmail(email)
                 .map(this::buildUserData)
                 .orElse(null);
+    }
+
+    public List<UserData> getAllUsers() {
+        return userGateway.allUsers()
+                .stream()
+                .map(this::buildUserData)
+                .toList();
     }
 }
