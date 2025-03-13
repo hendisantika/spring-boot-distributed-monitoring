@@ -1,7 +1,10 @@
 package id.my.hendisantika.distributedmonitoring.core;
 
 import id.my.hendisantika.distributedmonitoring.annotation.Core;
+import id.my.hendisantika.distributedmonitoring.dto.UserData;
+import id.my.hendisantika.distributedmonitoring.dto.UserRequest;
 import id.my.hendisantika.distributedmonitoring.infra.UserJPAGateway;
+import id.my.hendisantika.distributedmonitoring.infra.UserTRecord;
 import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 
@@ -21,4 +24,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserService {
     private final UserJPAGateway userGateway;
+
+    public UserData createUser(UserRequest userRequest) {
+        UserTRecord userTRecord = userGateway.saveOrUpdate(
+                buildUserTRecord(userRequest)
+        );
+        return buildUserData(userTRecord);
+    }
 }
