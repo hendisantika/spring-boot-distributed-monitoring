@@ -3,6 +3,7 @@ package id.my.hendisantika.distributedmonitoring.aspect;
 import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,4 +24,7 @@ public class RepositoryTraceAspect {
 
     private final Tracer tracer;
 
+    @Pointcut("execution(* org.springframework.data.repository.Repository+.*(..))")
+    public void repositoryMethods() {
+    }
 }
