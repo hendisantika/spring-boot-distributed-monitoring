@@ -55,4 +55,8 @@ public class UserService {
     public void deleteUser(UUID id) {
         userGateway.deleteById(id);
     }
+
+    public boolean userExists(UUID id) {
+        return userGateway.userExists(id);
+    }
 }
