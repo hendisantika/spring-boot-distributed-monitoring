@@ -2,6 +2,7 @@ package id.my.hendisantika.distributedmonitoring.aspect;
 
 import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -33,5 +34,11 @@ public class RepositoryTraceAspect {
     public void beforeRepositoryCall() {
         // Start the span for repository method call
         tracer.currentSpan().tag("repository.call", "start");
+    }
+
+    @After("repositoryMethods()")
+    public void afterRepositoryCall() {
+        // Close the span after the repository method call
+        tracer.currentSpan().tag("repository.call", "end");
     }
 }
