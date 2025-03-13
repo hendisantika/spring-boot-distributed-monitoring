@@ -9,6 +9,7 @@ import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -58,5 +59,12 @@ public class UserService {
 
     public boolean userExists(UUID id) {
         return userGateway.userExists(id);
+    }
+
+    private static String generateUniqueUsername(String firstName, String lastName) {
+        String normalizedFirstName = firstName.trim().toLowerCase().replaceAll("\\s+", "");
+        String normalizedLastName = lastName.trim().toLowerCase().replaceAll("\\s+", "");
+        int randomNumber = new Random().nextInt(9000) + 1000;
+        return normalizedFirstName + normalizedLastName + randomNumber;
     }
 }
