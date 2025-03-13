@@ -42,4 +42,12 @@ public class UserJPAGateway {
     public List<UserTRecord> allUsers() {
         return userJPARepository.findAll();
     }
+
+    public void deleteById(UUID id) {
+        userJPARepository.findById(id)
+                .ifPresent(user -> {
+                    user.setActive(false);
+                    saveOrUpdate(user);
+                });
+    }
 }
