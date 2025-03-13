@@ -1,5 +1,6 @@
 package id.my.hendisantika.distributedmonitoring.infra;
 
+import id.my.hendisantika.distributedmonitoring.annotation.Gateway;
 import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
