@@ -31,4 +31,8 @@ public class UserService {
         );
         return buildUserData(userTRecord);
     }
+
+    public UserData updateUser(UserRequest userRequest) {
+        return null;
+    }
 }
