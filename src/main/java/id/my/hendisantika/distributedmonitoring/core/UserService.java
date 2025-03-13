@@ -67,4 +67,14 @@ public class UserService {
         int randomNumber = new Random().nextInt(9000) + 1000;
         return normalizedFirstName + normalizedLastName + randomNumber;
     }
+
+    private UserTRecord buildUserTRecord(UserRequest userRequest) {
+        return UserTRecord.builder()
+                .email(userRequest.getEmail())
+                .username(generateUniqueUsername(userRequest.getFirstName(), userRequest.getLastName()))
+                .firstName(userRequest.getFirstName())
+                .lastName(userRequest.getLastName())
+                .password(userRequest.getPassword())
+                .build();
+    }
 }
