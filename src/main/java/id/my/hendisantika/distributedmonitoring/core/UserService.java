@@ -9,6 +9,7 @@ import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by IntelliJ IDEA.
@@ -49,5 +50,9 @@ public class UserService {
                 .stream()
                 .map(this::buildUserData)
                 .toList();
+    }
+
+    public void deleteUser(UUID id) {
+        userGateway.deleteById(id);
     }
 }
