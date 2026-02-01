@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>7.2.2.Final</version> <!-- Ensure compatibility -->
+            <version>7.2.3.Final</version> <!-- Ensure compatibility -->
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
