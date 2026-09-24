@@ -15,6 +15,7 @@
     <description>Distributed trace with OTEL prometheus grafana</description>
     <properties>
         <java.version>25</java.version>
+        <opentelemetry.version>1.66.0</opentelemetry.version>
     </properties>
     <dependencies>
         <dependency>
@@ -82,7 +83,7 @@
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-api</artifactId>
-            <version>1.66.0</version> <!-- Check for the latest version -->
+            <version>${opentelemetry.version}</version>
         </dependency>
 
         <dependency>
@@ -106,7 +107,7 @@
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-exporter-otlp</artifactId>
-            <version>1.66.0</version>
+            <version>${opentelemetry.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
