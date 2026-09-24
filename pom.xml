@@ -14,7 +14,7 @@
     <name>spring-boot-distributed-monitoring</name>
     <description>Distributed trace with OTEL prometheus grafana</description>
     <properties>
-        <java.version>23</java.version>
+        <java.version>25</java.version>
     </properties>
     <dependencies>
         <dependency>
