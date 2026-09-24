@@ -18,6 +18,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # required by the dependency graph submission
 
     # Docker Compose support is skipped in tests, so provide MySQL as a service container
     services:
@@ -49,4 +51,5 @@ jobs:
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
+      if: github.event_name == 'push'
       uses: advanced-security/maven-dependency-submission-action@a64327a7329c9939cf675e458452febe1894a70c
