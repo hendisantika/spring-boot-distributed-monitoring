@@ -16,7 +16,7 @@
     <properties>
         <java.version>25</java.version>
         <!--	Must match the OpenTelemetry SDK version used by opentelemetry-spring-boot-starter	-->
-        <opentelemetry.version>1.66.0</opentelemetry.version>
+        <opentelemetry.version>1.67.0</opentelemetry.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -24,7 +24,7 @@
             <dependency>
                 <groupId>io.opentelemetry</groupId>
                 <artifactId>opentelemetry-bom-alpha</artifactId>
-                <version>${opentelemetry.version}-alpha</version>
+                <version>${opentelemetry.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
