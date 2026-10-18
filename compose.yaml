@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: mysql:9.2.0
+    image: mysql:9.4.0
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: 53cret
@@ -8,9 +8,82 @@ services:
       MYSQL_USER: yu71
       MYSQL_PASSWORD: 53cret
     ports:
-      - "3307:3306"
+      - "3308:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:v3.2.1
+    container_name: prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yaml"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+    networks:
+      - monitoring
+
+  tempo:
+    image: grafana/tempo:2.6.1
+    container_name: tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ./docker/tempo/tempo.yaml:/etc/tempo.yaml:ro
+      - ./docker/tempo/tempo-data:/tmp/tempo
+    ports:
+      - "3200:3200"   # tempo
+      - "9411:9411"   # zipkin
+    networks:
+      - monitoring
+
+  loki:
+    image: grafana/loki:3.3.2
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:11.5.0
+    container_name: grafana
+    volumes:
+      - ./docker/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    ports:
+      - "3000:3000"
+    networks:
+      - monitoring
+
+  distrimo-backend-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: distrimo-backend-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - tempo
+      - prometheus
+      - loki
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/distrimo?useSSL=true&requireSSL=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Jakarta
+      - SPRING_DATASOURCE_USERNAME=yu71
+      - SPRING_DATASOURCE_PASSWORD=53cret
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
 
 volumes:
   mysql_data:
