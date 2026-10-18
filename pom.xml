@@ -15,8 +15,21 @@
     <description>Distributed trace with OTEL prometheus grafana</description>
     <properties>
         <java.version>25</java.version>
-        <opentelemetry.version>1.67.0</opentelemetry.version>
+        <!--	Must match the OpenTelemetry SDK version used by opentelemetry-spring-boot-starter	-->
+        <opentelemetry.version>1.66.0</opentelemetry.version>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <!--	Keep OpenTelemetry alpha/incubator artifacts on the same version as the SDK	-->
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-bom-alpha</artifactId>
+                <version>${opentelemetry.version}-alpha</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
