@@ -1,0 +1,11 @@
+target/
+!target/*.jar
+.git
+.gitignore
+.DS_Store
+*.md
+docker/
+compose.yaml
+mvnw
+mvnw.cmd
+.mvn/
